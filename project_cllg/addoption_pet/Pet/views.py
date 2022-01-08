@@ -25,9 +25,22 @@ def pet_reg(request):
 def index(request):
     return render(request,'Pet/index.html',context)
 
-# def Profile(request):
-#     return render(request,'Pet/pet_profile.html',{'pets':Pet.objects.get(pk)})
 
 class Profile(DetailView):
     model = Pet
     template_name='pet_profile.html'
+    
+# def User(request):
+#     return render(request,'Pet/user_register.html')
+
+def Pet_Home(request):
+    return render(request,'Pet/pet_home.html',context)
+
+def Pet_Home_dog(request):
+    return render(request,'Pet/pet_dog.html',context)
+
+def Pet_Home_cat(request):
+    return render(request,'Pet/pet_cat.html',context)
+
+def About(request):
+    return render(request,'Pet/about.html')

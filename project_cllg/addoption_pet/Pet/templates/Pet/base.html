@@ -5,7 +5,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PAWS-Home</title>
+    <title>{%block title%}
+
+      {%endblock%}
+    </title>
 
     <!-- Css link -->
     <link rel="stylesheet" href={% static 'js/style.css' %}>
@@ -30,38 +33,25 @@
     <div class="navibar">
       <div class="logo"><a href="#">PAWS🐾</a></div>
       <ul class="menu">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#adopt">Adopt</a></li>
-        <li><a href="#blog">Blog</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href={% url 'pet_index' %}>Home</a></li>
+        <li><a href={% url 'about' %}>About</a></li>
+        <li><a href={% url 'pet_home' %}>Adopt</a></li>
+        {% if user.authenticated %}
+        
+        <li><a href={% url 'logout' %}>logout</a></li>
+        {% else %}
+        <li><a href={% url 'login' %}>login</a></li>
+        <li><a href={% url 'user_reg' %}>sign up</a></li>
+
         <div class="cancel-btn">
           <i class="fas fa-times"></i>
         </div>
       </ul>
-      <div class="media-icons">
-        <a href="#" target="linkedin"><i class="fab fa-linkedin-in"></i></a>
-        <a href="#" target="twitter"><i class="fab fa-twitter"></i></a>
-        <a href="#" target="instagram"><i class="fab fa-instagram"></i></a>
-        <a href="#" target="git"><i class="fab fa-github"></i></a>
-      </div>
     </div>
     <div class="menu-btn">
       <i class="fas fa-bars"></i>
     </div>
   </nav>
-  <section style="background: linear-gradient(to right, rgba(0, 0, 0, 0.70), rgba(0, 0, 0, 0.60)),url(static/images/94335-free-dog-desktop-wallpaper.jpg)">
-    <article class="home" id="home">
-      <div class="home-content">
-        <div class="home-text">
-          <h1 class="text-one" style="font-family: 'Roboto Slab', 'Times New Roman', serif; font-size: 50px; font-weight: 700;">Adopt a dog </h1>
-          <h4 class="text-two" style="font-family: 'Roboto';font-weight: 500; font-size: 40px;">Get a friend for life! </h4>
-        </div>
-        <button type="button" class="btn btn-primary" style="background-color: #643820; border-color: #643820;"><a href="#" style="text-decoration: none;">Adopt Now!</a></button>
-        <iframe height="480" width="500" src="https://www.youtube.com/embed/Gk8e3Lg5GFU"></iframe>
-      </div>
-    </article>
-  </section>
 
   <div>
   {% block content %}{% endblock %}

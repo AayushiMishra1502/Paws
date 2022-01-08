@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- Fontawesome CDN Link -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+</head>
+<body>
+  <nav>
+    <div class="navibar">
+      <div class="logo"><a href="#">PAWS🐾</a></div>
+      <ul class="menu">
+        <li><a href={% url 'pet_index' %}>Home</a></li>
+        <li><a href={% url 'about' %}>About</a></li>
+        <li><a href={% url 'pet_home' %}>Adopt</a></li>
+        <li><a href={% url 'login' %}>login</a></li>
+        <li><a href={% url 'user_reg' %}>sign up</a></li>
+        <li><a href={% url 'pet_reg' %}>Rehome</a></li>
+        <div class="cancel-btn">
+          <i class="fas fa-times"></i>
+        </div>
+      </ul>
+    </div>
+    <div class="menu-btn">
+      <i class="fas fa-bars"></i>
+    </div>
+  </nav>
+
+<div class = "container">
+  <div class="home">
+  <div class="row">
+  {% for pet in pets %}
+  {% if pet.pet_status == 'not_adopted' %} 
+     <div class="col-md-4">
+      <figure class="card card-product-grid">
+          <h5 class="card-title">{{pet.pet_name}}</h5>
+          <div class="card-text"><p>Type: {{pet.pet_category}}<br>
+            Age: {{pet.pet_age}}<br>
+            Bread: {{pet.pet_bread}}<br>
+            Gender: {{pet.pet_gender}}<br>
+            State:{{pet.pet_address}}<br></p>
+          </div> <!-- price-wrap.// -->
+      </figure> <!-- card // -->
+    </div> <!-- col.// -->
+    {% endif %}
+    {% endfor %}
+
+  </div>
+  </div>
+<style>
+  .home{
+    margin-top:112px
+  }
+  nav{
+    top: 0px;
+    background: #000000;
+    position: fixed;
+    width: 100%;
+    padding: 20px 0;
+    z-index: 998;
+    transition: all 0.3s ease;
+    font-family: 'Ubuntu', sans-serif;
+  }
+  nav.sticky{
+    background: rgb(0, 0, 0);
+    padding: 13px 0;
+  }
+  nav .navibar{
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+  }
+  nav .navibar .logo a{
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 35px;
+    color: rgb(255, 255, 255);
+  }
+  nav.sticky .navibar .logo a{
+    
+    color: #ffffff;
+  }
+  nav .navibar .menu{
+    display: flex;
+    position: relative;
+  }
+  nav .navibar .menu li{
+    list-style: none;
+    margin: 0 8px;
+  }
+  .navibar .menu a{
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    color: rgb(255, 255, 255);
+    padding: 6px 0;
+    transition: all 0.4s ease;
+  }
+  .navibar .menu a:hover{
+    color: #3a3637;
+  }
+  nav.sticky .menu a{
+    color: #aaa2a3;
+  }
+  nav.sticky .menu a:hover{
+    color: rgb(238, 189, 116);
+  }
+  .navibar .media-icons a{
+    color: #d4c8ca;
+    font-size: 18px;
+    margin: 0 6px;
+  }
+  nav.sticky .media-icons a{
+    color: rgb(255, 255, 255);
+  }
+  
+  /* Side Navigation Menu Button*/
+  nav .menu-btn,
+  .navibar .menu .cancel-btn{
+    position: absolute;
+    color: rgb(160, 56, 56);
+    right: 30px;
+    top: 20px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: none;
+  }
+  nav .menu-btn{
+    color: rgb(190, 36, 36);
+  }
+  nav.sticky .menu-btn{
+    color: #372c2e;
+  }
+  .navibar .menu .menu-btn{
+    color: rgb(202, 31, 31);
+  }
+  
+</style>
+</body>
+</html>

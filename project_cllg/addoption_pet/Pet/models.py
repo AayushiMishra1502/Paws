@@ -1,9 +1,17 @@
 
 from django.db import models
 from django.db.models.enums import Choices
+from django_countries.fields import CountryField
 
 # Create your models here.
 class Pet(models.Model):
+    STATES = (("Andhra Pradesh","Andhra Pradesh"),("Arunachal Pradesh ","Arunachal Pradesh "),("Assam","Assam"),("Bihar","Bihar"),("Chhattisgarh","Chhattisgarh"),("Goa","Goa"),("Gujarat","Gujarat"),("Haryana","Haryana"),("Himachal Pradesh","Himachal Pradesh"),("Jammu and Kashmir ","Jammu and Kashmir "),("Jharkhand","Jharkhand"),("Karnataka","Karnataka"),("Kerala","Kerala"),("Madhya Pradesh","Madhya Pradesh"),("Maharashtra","Maharashtra"),("Manipur","Manipur"),("Meghalaya","Meghalaya"),("Mizoram","Mizoram"),("Nagaland","Nagaland"),("Odisha","Odisha"),("Punjab","Punjab"),("Rajasthan","Rajasthan"),("Sikkim","Sikkim"),("Tamil Nadu","Tamil Nadu"),("Telangana","Telangana"),("Tripura","Tripura"),("Uttar Pradesh","Uttar Pradesh"),("Uttarakhand","Uttarakhand"),("West Bengal","West Bengal"),("Andaman and Nicobar Islands","Andaman and Nicobar Islands"),("Chandigarh","Chandigarh"),("Dadra and Nagar Haveli","Dadra and Nagar Haveli"),("Daman and Diu","Daman and Diu"),("Lakshadweep","Lakshadweep"),("National Capital Territory of Delhi","National Capital Territory of Delhi"),("Puducherry","Puducherry"))
+    
+    PET_STATUS = (
+        ('adopted','adopted'),
+        ('not_adopted','not_adopted')
+    )
+    
     PET_GENDER = (
         ('male','male'),
         ('female','female')
@@ -28,11 +36,14 @@ class Pet(models.Model):
     pet_age = models.CharField(max_length=50,choices=PET_AGE)
     pet_bread = models.CharField(max_length=10)
     pet_gender = models.CharField(max_length=10,choices = PET_GENDER)
-    pet_image = models.ImageField(upload_to = 'pePet_pic',default="", null=True, blank=True)
+    pet_image = models.ImageField(upload_to = 'Pet_pic',default="", null=True, blank=True)
     pet_vaccinated = models.CharField(max_length=3,choices=PET_YES_OR_NO,default="")
     pet_neutered = models.CharField(max_length=3,choices=PET_YES_OR_NO,default="")
     pet_sprayed = models.CharField( max_length=3,choices=PET_YES_OR_NO,default="")
     pet_good_kids = models.CharField( max_length=3,choices=PET_YES_OR_NO,default="")
+    pet_address = models.CharField (max_length=60,choices=STATES,default="")
+    pet_status = models.CharField(max_length=40,choices=PET_STATUS,default="not_adopted")
+    
 
     def __str__(self):
         return f"{self.pet_category}-{self.pet_name}"
