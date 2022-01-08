@@ -33,27 +33,32 @@
     </div>
   </nav>
 
-<div class = "container">
-  <div class="home">
-  <div class="row">
-  {% for pet in pets %}
-  {% if pet.pet_status == 'not_adopted' %} 
-     <div class="col-md-4">
-      <figure class="card card-product-grid">
-          <h5 class="card-title">{{pet.pet_name}}</h5>
-          <div class="card-text"><p>Type: {{pet.pet_category}}<br>
-            Age: {{pet.pet_age}}<br>
-            Bread: {{pet.pet_bread}}<br>
-            Gender: {{pet.pet_gender}}<br>
-            State:{{pet.pet_address}}<br></p>
-          </div> <!-- price-wrap.// -->
-      </figure> <!-- card // -->
-    </div> <!-- col.// -->
-    {% endif %}
-    {% endfor %}
-
+  <div class="container">
+    <div class="row">
+      <!-- {% for pet in pets %}
+      {% if pet.pet_status == 'not_adopted' %}  -->
+      <div class="col-md-4">
+        <div class="item card card-product-grid">
+          <div class="img-box">
+            <img src="https://i.insider.com/5484d9d1eab8ea3017b17e29?width=600&format=jpeg&auto=webp" alt="{{pet.pet_name}}">
+            <div class="details">
+              <h2>{{pet.pet_name}}<br><span>Type: {{pet.pet_category}}</span></h2>
+              <p>Age: {{pet.pet_age}}<br>
+                Bread: {{pet.pet_bread}}<br>
+                Gender: {{pet.pet_gender}}<br>
+                State:{{pet.pet_address}}<br></p>
+              <a href="#" class="profile_btn">Adopt</a>
+            </div>
+          </div>
+        </div>
+      </div>   
+    </div>
   </div>
+  <!-- {% endif %}
+  {% endfor %} -->
+    </div>
   </div>
+</div>
 <style>
   .home{
     margin-top:112px
@@ -106,7 +111,7 @@
     transition: all 0.4s ease;
   }
   .navibar .menu a:hover{
-    color: #3a3637;
+    color: #f1e47f;
   }
   nav.sticky .menu a{
     color: #aaa2a3;
@@ -144,6 +149,106 @@
   .navibar .menu .menu-btn{
     color: rgb(202, 31, 31);
   }
+  
+  .item {
+  position: relative;
+  top: 250px;
+  margin-bottom: 40px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 240px;
+  height: 300px;
+  background: rgb(255, 255, 255);
+  -webkit-box-shadow: 0 5px 15px rgba(0,0,0,0.25);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.25);
+  border-radius: 5px;
+  overflow: hidden;
+  transition: 1s;
+}
+
+.item .img-box {
+  height: 100%;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  transition: 1s;
+}
+
+.item .img-box img {
+  display: block;
+  width: 100%;
+  margin: 0 auto 0;
+  transition: 1s;
+}
+.details {
+  position: absolute;
+  bottom: -150px;
+  width: 100%;
+  background: #fff;
+  padding: 10px;
+  padding-top: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-box-shadow: 0 0 0 rgba(0,0,0,0);
+  box-shadow: 0 0 0 rgba(0,0,0,0);
+  transition: 1s;
+}
+.details h2 {
+  margin: 0;
+  padding: 0;
+  padding-bottom: 30px;
+  width: 100%;
+  font-size: 16px;
+}
+
+.details h2 span {
+  font-size: 12px;
+  color: #bbb;
+  font-weight: normal;
+}
+
+.details .age {
+  position: relative;
+  top: 2px;
+  /* right: 25px; */
+  font-weight: 450;
+  font-size: 20px;
+}
+
+.profile_btn {
+  display: block;
+  padding: 5px;
+  color: #fff;
+  margin: 15px 0 0;
+  background: #333;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: 1s;
+}
+
+.profile_btn:hover{
+  color: #ffffff;
+}
+
+
+.item:hover .details {
+  overflow: visible;
+  bottom: 0;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.25);
+  transition: 1s;
+}
+
+.item:hover .img-box {
+  position: absolute;
+  bottom: 2px;
+  transition: 3s;
+}
+
+.item:hover h2, .item:hover .age {
+  padding-top: 10px;
+  padding-bottom: 4px;
+}
+
   
 </style>
 </body>
