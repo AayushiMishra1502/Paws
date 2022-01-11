@@ -41,11 +41,12 @@ def log_in(request):
         else:
             messages.error(request,"Invalid username or password.")
     form = AuthenticationForm()
+    print(user)
     return render(request,'User/register.html',{'form':form})
 
 def log_out(request):
     auth.logout(request)
-    return redirect('/')
+    return redirect('/index')
 
 def profile(request):
     if request.method == 'POST':

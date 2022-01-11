@@ -2,6 +2,9 @@
 from django.db import models
 from django.db.models.enums import Choices
 from django_countries.fields import CountryField
+from django.contrib.auth.models import User
+from django.urls import reverse
+from PIL import Image
 
 # Create your models here.
 class Pet(models.Model):
@@ -43,7 +46,21 @@ class Pet(models.Model):
     pet_good_kids = models.CharField( max_length=3,choices=PET_YES_OR_NO,default="")
     pet_address = models.CharField (max_length=60,choices=STATES,default="")
     pet_status = models.CharField(max_length=40,choices=PET_STATUS,default="not_adopted")
+    pet_owner = models.ForeignKey(User, on_delete=models.CASCADE , default = "")
     
 
     def __str__(self):
         return f"{self.pet_category}-{self.pet_name}"
+
+    def get_absolute_url(self):
+        return reverse("pet_profile", kwargs={"pk": self.pk})
+    
+    def save(self,*args, **kwargs):
+        super(Pet,self).save(  *args, **kwargs)
+
+        img = Image.open(self.pet_image.path)
+
+        if img.height > 300 or img.width > 300:
+            output_size = (300, 300)
+            img.thumbnail(output_size)
+            img.save(self.pet_image.path)

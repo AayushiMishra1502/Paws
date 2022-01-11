@@ -1,13 +1,17 @@
-{% extends "User/register.html" %}
+{% extends "Pet/navbar.html" %}
 {% load crispy_forms_tags %}
-{% block login %}
+{% block content %}
+<div class="form-modal">
+<div id="signup-form">
 <div>
-        <div>
-            <form action = '' method="POST">
-                {%csrf_token%}
-                    {{form|crispy}}
-            </form>
-        </div>
+    <form action = '' method="post">
+    {%csrf_token%}
+        {{form|crispy}}
+        <input type="submit">
     </form>
 </div>
-{% endblock login %}
+</div>
+</div>
+</body>
+{% endblock content %}
+</html>
