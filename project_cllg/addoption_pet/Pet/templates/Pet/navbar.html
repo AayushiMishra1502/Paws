@@ -30,6 +30,7 @@
         <li><a href={% url 'pet_create' %}>Rehome</a></li>
         <li><a href={% url 'logout' %}>logout</a></li>
         {% else %}
+        <li><a href={% url 'about' %}>About</a></li>
         <li><a href={% url 'login' %}>login</a></li>
         <li><a href={% url 'user_reg' %}>sign up</a></li>
         {% endif%}
