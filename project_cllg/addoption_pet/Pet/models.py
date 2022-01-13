@@ -37,7 +37,7 @@ class Pet(models.Model):
     pet_category = models.CharField(max_length=50,choices=PET_CATEGORY)
     pet_name = models.CharField(max_length=10)
     pet_age = models.CharField(max_length=50,choices=PET_AGE)
-    pet_bread = models.CharField(max_length=10)
+    pet_bread = models.CharField(max_length=60)
     pet_gender = models.CharField(max_length=10,choices = PET_GENDER)
     pet_image = models.ImageField(upload_to = 'Pet_pic',default="", null=True, blank=True)
     pet_vaccinated = models.CharField(max_length=3,choices=PET_YES_OR_NO,default="")
@@ -53,14 +53,15 @@ class Pet(models.Model):
         return f"{self.pet_category}-{self.pet_name}"
 
     def get_absolute_url(self):
-        return reverse("pet_profile", kwargs={"pk": self.pk})
+        print('check')
+        return reverse('pet_profile', kwargs={"pk": self.pk})
     
-    def save(self,*args, **kwargs):
-        super(Pet,self).save(  *args, **kwargs)
+    # def save(self,*args, **kwargs):
+    #     super(Pet,self).save(  *args, **kwargs)
 
-        img = Image.open(self.pet_image.path)
+    #     img = Image.open(Pet.pet_image.path)
 
-        if img.height > 300 or img.width > 300:
-            output_size = (300, 300)
-            img.thumbnail(output_size)
-            img.save(self.pet_image.path)
+    #     if img.height > 300 or img.width > 300:
+    #         output_size = (300, 300)
+    #         img.thumbnail(output_size)
+    #         img.save(self.pet_image.path)

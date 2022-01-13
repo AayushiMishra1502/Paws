@@ -24,8 +24,6 @@
         <ul class="menu">
           {% if user.is_authenticated %}
           <li><a href={% url 'user_profile' %}> welcome!! {{user.username}}</a></li>
-          <li><a href={% url 'pet_home' %}>Home</a></li>
-          <li><a href={% url 'about' %}>About</a></li>
           <li><a href={% url 'pet_home' %}>Adopt</a></li>
           <li><a href={% url 'pet_create' %}>Rehome</a></li>
           <li><a href={% url 'logout' %}>logout</a></li>
@@ -40,7 +38,7 @@
     </div>
   </nav>
   <!-- <div class="container"> -->
-    <div class="search">
+ <div class="search">
     <div class="row">    
         <div class="col-xs-8 col-xs-offset-2">
 		    <div class="input-group">
@@ -66,7 +64,7 @@
             </div>
         </div>
 	</div>
-</div>
+</div> 
 <!-- </div> -->
 <div class = "container">
   
@@ -74,19 +72,22 @@
   {% for pet in pets %}
   {% if pet.pet_status == 'not_adopted' %} 
      <div class="col-md-4">
-      <div class="item card card-product-grid">
-        <div class="img-box">
-          <img src="{{pet.pet_image.url}}" alt="{{pet.pet_name}}">
-          <div class="details">
-            <h2>{{pet.pet_name}}<br><span>Type: {{pet.pet_category}}</span></h2>
-            <p>Age: {{pet.pet_age}}<br>
-              Bread: {{pet.pet_bread}}<br>
-              Gender: {{pet.pet_gender}}<br>
-              State:{{pet.pet_address}}<br></p>
-            <a href={% url 'pet_creates' %} class="profile_btn">Adopt</a>
-          </div>
-        </div>
-      </div>
+      <div class="cards">
+        <article class="card">   
+            <img src="{{pet.pet_image.url}}" alt="Hot air balloons" width=350 height = 300>
+            <div class="content">
+              <h4>{{pet.pet_name}}<br></h4><p><span>Type: {{pet.pet_category}}</span><br>
+                Age: {{pet.pet_age}}<br>
+                Bread: {{pet.pet_bread}}<br>
+                Gender: {{pet.pet_gender}}<br>
+                State:{{pet.pet_address}}<br></p>
+              <a href={% url 'pet_profile' pet.id %} class="profile_btn">Adopt</a>
+            </div>
+                
+        </article>
+    </div>
+                
+        
 
     </div> 
     {% endif %}
@@ -96,6 +97,22 @@
   </div>
 </div>
 <style>
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    grid-gap: 20px;
+}
+
+.card {
+    display: grid;
+    grid-template-rows: max-content 200px 1fr;
+}
+
+.card img {
+    object-fit: cover;
+  
+}
+    
   .search{
     margin-top: 143px ;
   }
